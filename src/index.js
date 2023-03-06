@@ -4,16 +4,20 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
 const routes = require("./routes");
+const db = require("./config/db");
 
 // App
 const app = express();
 const port = 3000;
 
+// Database
+db.connect();
+
 // Static file
 app.use(express.static(path.join(__dirname, "public")));
 
 // Logger
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 //Routing
 routes(app);

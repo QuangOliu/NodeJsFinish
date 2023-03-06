@@ -1,6 +1,10 @@
+const Course = require("../models/Course");
+
 class SiteControler {
-  index(req, res) {
-    res.render("home");
+  index(req, res, next) {
+    Course.find({})
+      .then((courses) => res.json(courses))
+      .catch(next);
   }
 
   search(req, res) {
