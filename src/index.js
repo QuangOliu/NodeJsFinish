@@ -16,6 +16,9 @@ db.connect();
 // Static file
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.urlencoded());
+app.use(express.json());
+
 // Logger
 // app.use(morgan("combined"));
 
