@@ -21,14 +21,16 @@ class CourseController {
   store(req, res, next) {
     const formData = req.body;
     formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
-    const course = new Course({ name: "Quang tran", description: "adf", videoId: "cvuTz730U3Y", level: "de", image: "https://img.youtube.com/vi/cvuTz730U3Y/sddefault.jpg" });
-    course.save();
+    const course = new Course(formData);
+    // course.save();
+
     course
-    .save()
-    .then((result) => {
-      res.send("hello");
-    })
-    .catch((err) => {});
+      .save()
+      .then((result) => {
+        res.redirect("/");
+        // res.send("hello");
+      })
+      .catch((err) => {});
     // res.json(formData);
   }
 }
