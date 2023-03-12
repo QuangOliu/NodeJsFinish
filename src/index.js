@@ -1,8 +1,10 @@
 // import { create } from "../../dist/index.js"; // "express-handlebars"
 const path = require("path");
+var bodyParser = require("body-parser");
 const express = require("express");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
+const methodOverride = require("method-override");
 const routes = require("./routes");
 const db = require("./config/db");
 
@@ -10,13 +12,17 @@ const db = require("./config/db");
 const app = express();
 const port = 3000;
 
+// Method overwrite
+app.use(methodOverride("_method"));
+
 // Database
 db.connect();
 
 // Static file
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.urlencoded());
+// body parser
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Logger
@@ -25,11 +31,15 @@ app.use(express.json());
 //Routing
 routes(app);
 
+
 // Engene
 app.engine(
   "hbs",
   handlebars.engine({
     extname: ".hbs",
+    helpers: {
+      sum: (a, b) => a + b,
+    },
   })
 );
 app.set("view engine", "hbs");

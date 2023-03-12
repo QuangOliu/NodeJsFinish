@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const slug = require("mongoose-slug-generator");
 
 mongoose.plugin(slug);
+mongoose.set('strictQuery', true);
 const Course = new Schema(
   {
     name: { type: String, required: true },

@@ -22,16 +22,39 @@ class CourseController {
     const formData = req.body;
     formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
     const course = new Course(formData);
-    // course.save();
-
     course
       .save()
       .then((result) => {
         res.redirect("/");
-        // res.send("hello");
       })
       .catch((err) => {});
-    // res.json(formData);
+  }
+
+  // [GET] courses/:id/edit
+  edit(req, res, next) {
+    const id = req.params.id;
+    Course.findById(id)
+      .then((course) => {
+        res.render("courses/edit", { course: mongooseToObject(course) });
+      })
+      .catch(next);
+  }
+
+  // [PUT] courses/:id
+  update(req, res, next) {
+    Course.updateOne({ _id: req.params.id }, req.body)
+      .then(() => {
+        res.redirect("/me/stored/courses");
+      })
+      .catch(next);
+  }
+
+  destroy(req, res, next) {
+    Course.deleteOne({ _id: req.params.id }, req.params.id)
+      .then(() => {
+        res.redirect("back");
+      })
+      .catch(next);
   }
 }
 
