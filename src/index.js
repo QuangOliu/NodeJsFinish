@@ -31,7 +31,6 @@ app.use(express.json());
 //Routing
 routes(app);
 
-
 // Engene
 app.engine(
   "hbs",
@@ -39,6 +38,18 @@ app.engine(
     extname: ".hbs",
     helpers: {
       sum: (a, b) => a + b,
+      splitWord: (string, linmit) => {
+        var resultText = "";
+        if (string.length >= linmit) {
+          let newString = "";
+          newString = string.substring(0, linmit);
+          const lastId = newString.lastIndexOf(" ");
+          resultText = string.substring(0, lastId) + " ...";
+        } else {
+          resultText = string;
+        }
+        return resultText;
+      },
     },
   })
 );
