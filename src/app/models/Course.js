@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const slug = require("mongoose-slug-generator");
+var mongooseDelete = require("mongoose-delete");
 
-mongoose.plugin(slug);
-mongoose.set('strictQuery', true);
+mongoose.set("strictQuery", true);
 const Course = new Schema(
   {
     name: { type: String, required: true },
@@ -18,5 +18,8 @@ const Course = new Schema(
   }
 );
 
-module.exports = mongoose.model("Course", Course);
+// Add plugin
+mongoose.plugin(slug);
+mongoose.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" });
 
+module.exports = mongoose.model("Course", Course);

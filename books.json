@@ -1,0 +1,46 @@
+[
+  {
+    "title": "name1",
+    "author": "quang",
+    "page": 100,
+    "rating": 7,
+    "genres": ["magic", "ao ma"],
+    "reviews": [
+      { "name": "r1", "body": "r1" },
+      { "name": "r2", "body": "r2" }
+    ]
+  },
+  {
+    "title": "name2",
+    "author": "mai",
+    "page": 200,
+    "rating": 8,
+    "genres": ["magic"],
+    "reviews": [
+      { "name": "r1", "body": "r1" },
+      { "name": "r2", "body": "r2" }
+    ]
+  },
+  {
+    "title": "name3",
+    "author": "oliu",
+    "page": 300,
+    "rating": 9,
+    "genres": ["ao ma"],
+    "reviews": [
+      { "name": "r1", "body": "r1" },
+      { "name": "r2", "body": "r2" }
+    ]
+  },
+  {
+    "title": "name4",
+    "author": "le",
+    "page": 400,
+    "rating": 10,
+    "genres": ["logic"],
+    "reviews": [
+      { "name": "r1", "body": "r1" },
+      { "name": "r2", "body": "r2" }
+    ]
+  }
+]
